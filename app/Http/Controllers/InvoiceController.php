@@ -48,7 +48,17 @@ class InvoiceController extends Controller
             'qty' => $request->input('qty'),
         ]);
         $invoice->save();
-        return redirect()->route('dashboard')->with('success', 'Invoice created successfully');
+        $emailData = [
+            'invoiceDate' => $request->input('invoice_date'),
+            'taxAmount' => $request->input('tax_amount'),
+            'invoiceAmount' => $request->input('net_amount'),
+        ];
+    
+        Mail::to($request->input('customer_email'))
+            ->send(new InvoiceEmail($emailData['invoiceDate'], $emailData['taxAmount'], $emailData['invoiceAmount']));
+    
+        
+        return redirect()->route('store.invoice')->with('success', 'Invoice created successfully and email sent');
     }
 
     /**

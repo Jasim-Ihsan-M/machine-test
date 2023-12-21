@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use App\Models\Invoice;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -47,7 +48,7 @@ class InvoiceController extends Controller
             'qty' => $request->input('qty'),
         ]);
         $invoice->save();
-        return redirect()->route('invoices.index')->with('success', 'Invoice created successfully');
+        return redirect()->route('dashboard')->with('success', 'Invoice created successfully');
     }
 
     /**

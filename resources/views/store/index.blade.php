@@ -6,7 +6,7 @@
     <div class="py-10 ">
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
-                <form method="POST" >
+                <form method="POST" action="{{ route('invoices.store') }}" id="invoiceForm" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-4">
                         <label for="invoice_date" class="block text-sm font-medium text-gray-600">Invoice Date</label>
@@ -15,6 +15,10 @@
                     <div class="mb-4">
                         <label for="customer_name" class="block text-sm font-medium text-gray-600">Customer Name</label>
                         <input type="text" id="customer_name" name="customer_name" class="mt-1 p-2 border rounded-md w-full" pattern="[A-Za-z ]+" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="customer_email" class="block text-sm font-medium text-gray-600">Customer Email</label>
+                        <input type="email" id="customer_email" name="customer_email" class="mt-1 p-2 border rounded-md w-full" required>
                     </div>
                     <div class="mb-4">
                         <label for="file_upload" class="block text-sm font-medium text-gray-600">File Upload (JPG, PNG, PDF)</label>
@@ -87,19 +91,7 @@
    
             $('#qty, #amount, #tax_percentage').on('input', calculateAmounts);
 
-            $('#invoiceForm').submit(function() {
-            
-
-              
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Validation Error',
-                    text: 'Please check the form for errors.'
-                });
-
-                
-                return false;
-            });
+          
         });
     </script>
 </x-app-layout>

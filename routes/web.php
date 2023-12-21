@@ -26,6 +26,7 @@ Route::get('/dashboard', function () {
 
 
 Route::get('/home',[InvoiceController::class,'index']);
+Route::resource('invoices', InvoiceController::class);
 
 Route::get('/invoices',function(){
     return view('store.index');

@@ -23,6 +23,32 @@ class InvoiceController extends Controller
         }
         
     }
+   
+    /**
+     * Store a newly created resource in storage.
+     */
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'qty' => 'required|numeric',
+            'amount' => 'required|numeric',
+            'customer_name' => 'required|regex:/^[A-Za-z ]+$/',
+            'customer_email' => 'required|email',
+        ]);
+        $invoice = new Invoice([
+            'name' => $request->input('customer_name'),
+            'email' => $request->input('customer_email'),
+            'amount' => $request->input('amount'),
+            'tax' => $request->input('tax_amount'),
+            'netamount' => $request->input('net_amount'),
+            'currentDate' => $request->input('invoice_date'),
+            'file_path' => $request->file('file_upload')->store('uploads'), 
+            'qty' => $request->input('qty'),
+        ]);
+        $invoice->save();
+        return redirect()->route('invoices.index')->with('success', 'Invoice created successfully');
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -32,13 +58,6 @@ class InvoiceController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.

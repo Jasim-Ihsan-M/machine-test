@@ -8,6 +8,8 @@ use App\Models\User;
 
 use Illuminate\Support\Facades\Auth;
 
+
+
 class InvoiceController extends Controller
 {
     /**
@@ -17,7 +19,7 @@ class InvoiceController extends Controller
     {
         if(Auth::id())
         {
-            return view('dashboard');
+            return view('store.index');
         }
         
     }

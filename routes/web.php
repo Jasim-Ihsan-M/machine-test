@@ -28,9 +28,16 @@ Route::get('/dashboard', function () {
 
 Route::resource('invoices', InvoiceController::class);
 Route::get('/home',[InvoiceController::class,'index']);
+
 // Route::get('/invoice', [InvoiceController::class, 'showAll']);
 
 Route::get('/invoice', [InvoiceController::class, 'showAll'])->middleware(['auth', 'verified'])->name('invoice');
+Route::get('/invoice/{id}', [InvoiceController::class, 'show'])->name('store.invoice.show');
+Route::put('/invoice/{id}', [InvoiceController::class, 'update'])->name('store.invoice.update');
+Route::delete('/invoice/{id}', [InvoiceController::class, 'destroy'])->name('store.invoice.destroy');
+
+
+
 Route::get('/invoices',function(){
     return view('store.index');
 });

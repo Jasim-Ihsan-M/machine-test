@@ -91,8 +91,8 @@ class InvoiceController extends Controller
      */
     public function edit(string $id)
     {
-        $invoice = Invoice::findOrFail($id);
-        return view('store.edit', compact('invoice'));  
+        // $invoice = Invoice::findOrFail($id);
+        // return view('store.edit', compact('invoice'));  
     }
 
     /**
@@ -130,7 +130,8 @@ class InvoiceController extends Controller
     {
         $invoice = Invoice::findOrFail($id);
         $invoice->delete();
-    
-        return redirect()->route('store.invoice')->with('success', 'Invoice deleted successfully');
+        
+        return redirect()->back()->with('success', 'Invoice deleted successfully');
+
     }
 }

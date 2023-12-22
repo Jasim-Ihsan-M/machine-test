@@ -19,13 +19,19 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        if(Auth::id())
-        {
+        if (Auth::check()) {
+            
             return view('store.index');
+        } else {
+            return redirect()->route('login'); 
         }
-        
     }
-   
+    public function showAll()
+    {
+        $invoices = Invoice::all();
+        return view('store.invoice', compact('invoices'));
+    }
+    
     /**
      * Store a newly created resource in storage.
      */
@@ -76,7 +82,7 @@ class InvoiceController extends Controller
      */
     public function show(string $id)
     {
-        //
+       
     }
 
     /**

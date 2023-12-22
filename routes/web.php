@@ -21,16 +21,18 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('store.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
 Route::get('/home',[InvoiceController::class,'index']);
 Route::resource('invoices', InvoiceController::class);
-
 Route::get('/invoices',function(){
     return view('store.index');
 });
+Route::get('/invoice', function () {
+    return view('store.invoice');
+})->middleware(['auth', 'verified'])->name('invoice');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

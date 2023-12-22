@@ -36,11 +36,11 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'url' => env('MAIL_URL'),
+            'url' => env('smtp://machinetestphp@proton.me:qwerty123@mail.com:587'),
             'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('machinetest2000@proton.me'),
+            'username' => env('machinetestphp@proton.me'),
             'password' => env('qwerty123'),
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),

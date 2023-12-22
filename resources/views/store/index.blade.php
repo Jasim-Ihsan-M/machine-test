@@ -56,7 +56,7 @@
                         <input type="text" id="net_amount" name="net_amount" class="mt-1 p-2 border rounded-md w-full" readonly>
                     </div>
                     <div class="mt-6">
-                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-800">
+                        <button type="submit" class="bg-blue-500 text-black  px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-800">
                             Submit
                         </button>
                     </div>

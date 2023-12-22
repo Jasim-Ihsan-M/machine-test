@@ -82,7 +82,8 @@ class InvoiceController extends Controller
      */
     public function show(string $id)
     {
-       
+        $invoice = Invoice::findOrFail($id);
+        return view('store.show', compact('invoice'));   
     }
 
     /**
@@ -90,7 +91,8 @@ class InvoiceController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $invoice = Invoice::findOrFail($id);
+        return view('store.edit', compact('invoice'));  
     }
 
     /**
@@ -98,7 +100,27 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $invoice = Invoice::findOrFail($id);
+    
+        $request->validate([
+            'qty' => 'required|numeric',
+            'amount' => 'required|numeric',
+            'customer_name' => 'required|regex:/^[A-Za-z ]+$/',
+            'customer_email' => 'required|email',
+        ]);
+    
+        // Update the invoice with the new data
+        $invoice->update([
+            'name' => $request->input('customer_name'),
+            'email' => $request->input('customer_email'),
+            'amount' => $request->input('amount'),
+            'tax' => $request->input('tax_amount'),
+            'netamount' => $request->input('net_amount'),
+            'currentDate' => $request->input('invoice_date'),
+            'qty' => $request->input('qty'),
+        ]);
+    
+        return redirect()->route('store.invoice')->with('success', 'Invoice updated successfully');
     }
 
     /**
@@ -106,6 +128,9 @@ class InvoiceController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $invoice = Invoice::findOrFail($id);
+        $invoice->delete();
+    
+        return redirect()->route('store.invoice')->with('success', 'Invoice deleted successfully');
     }
 }

@@ -79,9 +79,11 @@ A  Laravel-based web application for generating and managing invoices.
 ## Usage
 
 1. Register or log in to the application.
-2. Navigate to the "Invoices" section.
+2. Navigate to the "Invoice" section.
 3. Fill in the required details for the invoice.
 4. Submit the form, and the invoice will be generated.
+5. Navigate to "Invoices" section
+6. Show the Generated Bills and Edit, Delete, View the invoices 
 
 
 
